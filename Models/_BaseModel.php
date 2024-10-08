@@ -99,8 +99,12 @@ class BaseModel {
     }
 
     private function getClassName($classname) {
-        return $classname;
-        //return (substr($classname, strrpos($classname, '\\') + 1));
+        if(strpos($classname, '\\') === false) {
+            //not in a namespace
+            return $classname;
+        }
+        //in a namespace
+        return (substr($classname, strrpos($classname, '\\') + 1));
     }
     
 
